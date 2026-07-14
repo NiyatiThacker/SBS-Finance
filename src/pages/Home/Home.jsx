@@ -4,7 +4,6 @@ import * as Icons from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ROUTES } from '../../constants/routes';
 import { SERVICES } from '../../constants/services';
-import { PRODUCTS } from '../../constants/products';
 
 // Stat counter sub-component for premium scroll feel
 function StatItem({ value, label, prefix = '', suffix = '' }) {
@@ -91,9 +90,6 @@ function Home() {
   // Extract 4 main services for the preview section
   const previewServices = SERVICES.slice(0, 4);
 
-  // Extract 3 main products for the featured product strip
-  const featuredProducts = PRODUCTS.filter(p => ['equity-mf', 'sip', 'elss'].includes(p.id));
-
   return (
     <div className="bg-white">
       {/* 1. Hero Section */}
@@ -141,9 +137,9 @@ function Home() {
       <section className="bg-green-950 border-y border-gold-400/15 py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 divide-x divide-gold-400/10">
-            <StatItem value="15" label="Years of Experience" suffix="+" />
+            <StatItem value="6" label="Years of Experience" suffix="+" />
             <StatItem value="500" label="Clients Served" suffix="+" />
-            <StatItem value="200" label="Assets Under Advisory (Cr)" prefix="₹ " suffix="+" />
+            <StatItem value="50" label="Assets Under Advisory" prefix="₹ " suffix="cr+" />
             <StatItem value="10" label="Advisory Services" suffix="+" />
           </div>
         </div>
@@ -245,56 +241,9 @@ function Home() {
               </div>
               <h3 className="text-xl font-bold text-green-950 mb-3">Proven Track Record</h3>
               <p className="text-ink-muted text-sm leading-relaxed">
-                Over 15 years, we have successfully managed wealth through multiple bull and bear markets, providing steady, compound growth.
+                Over 6 years, we have successfully managed wealth through multiple bull and bear markets, providing steady, compound growth.
               </p>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Featured Products Strip */}
-      <section className="section-pad bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="section-title section-title-accent inline-block">Featured Products</h2>
-            <p className="text-ink-muted text-body-lg mt-4">
-              Explore high-conviction financial assets curated by our investment analysts for optimal returns.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredProducts.map((product, idx) => {
-              const IconComponent = Icons[product.icon] || Icons.TrendingUp;
-              return (
-                <motion.div 
-                  key={product.id} 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="card relative flex flex-col items-start border border-green-700/10 hover:-translate-y-1 hover:shadow-md transition-all duration-300"
-                >
-                  <span className="absolute top-4 right-4 bg-gold-400/10 border border-gold-400/20 text-green-950 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                    {product.category}
-                  </span>
-                  <div className="p-3 bg-green-100 text-green-700 rounded-lg mb-5">
-                    <IconComponent size={22} />
-                  </div>
-                  <h3 className="text-lg font-bold text-green-950 mb-2">{product.name}</h3>
-                  <p className="text-ink-muted text-sm leading-relaxed mb-6 flex-grow">{product.description}</p>
-                  
-                  {/* Highlight bar */}
-                  <div className="w-full bg-green-100/50 rounded-lg px-4 py-2.5 mb-6 text-green-950 text-xs md:text-sm font-semibold border-l-2 border-green-700">
-                    {product.highlight}
-                  </div>
-
-                  <Link to={`${ROUTES.PRODUCTS}#${product.id}`} className="text-green-700 hover:text-gold-600 font-semibold text-sm flex items-center gap-1 group transition-colors duration-250 mt-auto">
-                    <span>View Details</span>
-                    <Icons.ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
-                  </Link>
-                </motion.div>
-              );
-            })}
           </div>
         </div>
       </section>

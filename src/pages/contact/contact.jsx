@@ -41,13 +41,15 @@ function Contact() {
     
     // Submit directly to the Vercel API endpoint (works locally and in prod)
     const apiUrl = import.meta.env.VITE_API_URL || '';
+    const endpoint = `${apiUrl}/api/contact`;
+
     let success = false;
     let attempts = 0;
     const maxRetries = 3;
 
     while (attempts < maxRetries && !success) {
       try {
-        const response = await fetch(`${apiUrl}/api/contact`, {
+        const response = await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -141,8 +143,8 @@ function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-green-950 mb-2">Address</h3>
-                  <a href="https://maps.google.com/maps?q=Span%20Trade%20Center,%20Paldi%20Rd,%20Near%20Bony%20Travels,%20Pritam%20Nagar,%20Paldi,%20Ahmedabad,%20Gujarat%20380006" target="_blank" rel="noopener noreferrer" className="text-ink-muted text-sm leading-relaxed hover:text-gold-600 transition-colors">
-                    Span Trade Centre, Paldi Rd, Near Bony Travels, Pritam Nagar, Paldi, Ahmedabad, Gujarat 380006
+                  <a href="https://maps.google.com/maps?q=1003,%20Span%20Trade%20Center,%20Paldi%20Rd,%20Near%20Bony%20Travels,%20Pritam%20Nagar,%20Paldi,%20Ahmedabad,%20Gujarat%20380006" target="_blank" rel="noopener noreferrer" className="text-ink-muted text-sm leading-relaxed hover:text-gold-600 transition-colors">
+                    1003, Span Trade Centre, Paldi Rd, Near Bony Travels, Pritam Nagar, Paldi, Ahmedabad, Gujarat 380006
                   </a>
                 </div>
               </motion.div>
@@ -323,7 +325,7 @@ function Contact() {
         <div className="bg-white p-4 rounded-2xl shadow-xl border border-gray-100 h-[500px] w-full overflow-hidden">
           <iframe
             title="SBS Financials Location"
-            src="https://maps.google.com/maps?q=Span%20Trade%20Center,%20Paldi%20Rd,%20Near%20Bony%20Travels,%20Pritam%20Nagar,%20Paldi,%20Ahmedabad,%20Gujarat%20380006&z=16&output=embed"
+            src="https://maps.google.com/maps?q=1003,%20Span%20Trade%20Center,%20Paldi%20Rd,%20Near%20Bony%20Travels,%20Pritam%20Nagar,%20Paldi,%20Ahmedabad,%20Gujarat%20380006&z=16&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0, borderRadius: '0.75rem' }}

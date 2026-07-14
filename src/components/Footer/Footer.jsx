@@ -175,7 +175,6 @@ function Footer() {
                 { label: 'Home', path: ROUTES.HOME },
                 { label: 'About Us', path: ROUTES.ABOUT },
                 { label: 'Services', path: ROUTES.SERVICES },
-                { label: 'Products', path: ROUTES.PRODUCTS },
                 { label: 'Calculators', path: ROUTES.CALCULATORS },
                 { label: 'Contact Us', path: ROUTES.CONTACT },
               ].map((link, idx) => (
@@ -237,8 +236,8 @@ function Footer() {
             <ul className="flex flex-col gap-4 text-sm text-gray-300">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-gold-400 shrink-0 mt-0.5" />
-                <a href="https://maps.google.com/maps?q=Span%20Trade%20Center,%20Paldi%20Rd,%20Near%20Bony%20Travels,%20Pritam%20Nagar,%20Paldi,%20Ahmedabad,%20Gujarat%20380006" target="_blank" rel="noopener noreferrer" className="leading-relaxed hover:text-gold-400 transition-colors duration-200">
-                  Span Trade Centre, Paldi Rd, <br />Near Bony Travels, Pritam Nagar, Paldi,<br /> Ahmedabad, Gujarat 380006
+                <a href="https://maps.google.com/maps?q=1003,%20Span%20Trade%20Center,%20Paldi%20Rd,%20Near%20Bony%20Travels,%20Pritam%20Nagar,%20Paldi,%20Ahmedabad,%20Gujarat%20380006" target="_blank" rel="noopener noreferrer" className="leading-relaxed hover:text-gold-400 transition-colors duration-200">
+                  1003, Span Trade Centre, Paldi Rd, <br />Near Bony Travels, Pritam Nagar, Paldi,<br /> Ahmedabad, Gujarat 380006
                 </a>
               </li>
               <li className="flex items-center gap-3 group cursor-pointer w-fit" onClick={handleCopyPhone}>

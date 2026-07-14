@@ -16,10 +16,10 @@ function Calculator() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Unified state for inputs
-  const [amount, setAmount] = useState(50000);
-  const [annualContribution, setAnnualContribution] = useState(10000); // For Investment Calculator
-  const [rate, setRate] = useState(12);
-  const [years, setYears] = useState(5);
+  const [amount, setAmount] = useState('');
+  const [annualContribution, setAnnualContribution] = useState(''); // For Investment Calculator
+  const [rate, setRate] = useState('');
+  const [years, setYears] = useState('');
   const [compoundFreq, setCompoundFreq] = useState(12); // For Investment Calculator
   const [mfInvestmentType, setMfInvestmentType] = useState('Lumpsum Investment'); // For MF Returns Calculator
 
@@ -27,13 +27,13 @@ function Calculator() {
   const [summary, setSummary] = useState({ totalInvested: 0, estimatedReturns: 0, totalValue: 0 });
 
   const defaultValues = {
-    'EMI Calculator': { amount: 500000, rate: 9, years: 15 },
-    'MF Returns Calculator': { amount: 100000, rate: 12, years: 10, type: 'Lumpsum Investment' },
-    'FD Calculator': { amount: 100000, rate: 7, years: 5 },
-    'RD Calculator': { amount: 10000, rate: 6.5, years: 2 },
-    'SIP Calculator': { amount: 5000, rate: 15, years: 10 },
-    'Lumpsum Calculator': { amount: 50000, rate: 12, years: 5 },
-    'Investment Calculator': { amount: 50000, annualContribution: 10000, rate: 12, years: 5, compoundFreq: 12 },
+    'EMI Calculator': { amount: '', rate: '', years: '' },
+    'MF Returns Calculator': { amount: '', rate: '', years: '', type: 'Lumpsum Investment' },
+    'FD Calculator': { amount: '', rate: '', years: '' },
+    'RD Calculator': { amount: '', rate: '', years: '' },
+    'SIP Calculator': { amount: '', rate: '', years: '' },
+    'Lumpsum Calculator': { amount: '', rate: '', years: '' },
+    'Investment Calculator': { amount: '', annualContribution: '', rate: '', years: '', compoundFreq: 12 },
   };
 
   const handleCalcChange = (calc) => {
@@ -435,6 +435,7 @@ function Calculator() {
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
+                        onWheel={(e) => e.target.blur()}
                         className={`w-full py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-400/50 focus:border-gold-400 transition-colors text-gray-800 ${config.amountPrefix ? 'pl-10 pr-4' : 'px-4'}`}
                       />
                     </div>
@@ -451,6 +452,7 @@ function Calculator() {
                           type="number"
                           value={annualContribution}
                           onChange={(e) => setAnnualContribution(e.target.value)}
+                          onWheel={(e) => e.target.blur()}
                           className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-400/50 focus:border-gold-400 transition-colors text-gray-800"
                         />
                       </div>
@@ -466,6 +468,7 @@ function Calculator() {
                         type="number"
                         value={rate}
                         onChange={(e) => setRate(e.target.value)}
+                        onWheel={(e) => e.target.blur()}
                         className="w-full pl-4 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-400/50 focus:border-gold-400 transition-colors text-gray-800"
                       />
                     </div>
@@ -481,6 +484,7 @@ function Calculator() {
                         type="number"
                         value={years}
                         onChange={(e) => setYears(e.target.value)}
+                        onWheel={(e) => e.target.blur()}
                         className="w-full pl-4 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gold-400/50 focus:border-gold-400 transition-colors text-gray-800"
                       />
                     </div>

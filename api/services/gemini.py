@@ -118,7 +118,6 @@ def generate_chat_response(messages: list) -> str:
             "  - NRI Investment Services: /services/nri-investment\n"
             "  - Portfolio Review & Rebalancing Service: /services/portfolio-review\n"
             "  - Estate Planning Service: /services/estate-planning\n"
-            "  - Products: /products\n"
             "  - Calculators (Main Hub): /calculator\n"
             "  - Investment Calculator (Lumpsum/Growth): /calculators/investment\n"
             "  - Mutual Fund & SIP Calculator: /calculators/mutual-funds\n"

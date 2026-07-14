@@ -78,6 +78,30 @@ export default async function handler(req, res) {
   };
 
   try {
+    // If GOOGLE_SCRIPT_URL or VITE_GOOGLE_SCRIPT_URL is defined, forward the data directly to the Apps Script Web App
+    const scriptUrl = process.env.GOOGLE_SCRIPT_URL || process.env.VITE_GOOGLE_SCRIPT_URL;
+    if (scriptUrl) {
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: sanitizeInput(fullName),
+          email: sanitizeInput(email),
+          phone: sanitizeInput(phone || ''),
+          subject: sanitizeInput(subject),
+          message: sanitizeInput(message || '')
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Google Apps Script web app responded with status ${response.status}`);
+      }
+
+      return res.status(200).json({ success: true, message: 'Message recorded successfully' });
+    }
+
     const sheet = await getSheet();
     
     if (!sheet) {

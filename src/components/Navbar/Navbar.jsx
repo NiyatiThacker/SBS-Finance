@@ -89,27 +89,23 @@ function Navbar() {
               onMouseEnter={() => setIsServicesDropdownOpen(true)}
               onMouseLeave={() => setIsServicesDropdownOpen(false)}
             >
-              <button
-                onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+              <Link
+                to={ROUTES.SERVICES}
+                onClick={(e) => {
+                  handleLinkClick(ROUTES.SERVICES, e);
+                  setIsServicesDropdownOpen(false);
+                }}
                 className={`flex items-center gap-1 text-sm font-semibold tracking-wide transition-colors duration-250 focus:outline-none cursor-pointer ${location.pathname.startsWith('/services') ? 'text-gold-400' : 'text-white hover:text-gold-400'
                   }`}
               >
                 Services
                 <ChevronDown size={14} className={`transition-transform duration-250 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
+              </Link>
               <ServicesDropdown
                 isOpen={isServicesDropdownOpen}
                 onClose={() => setIsServicesDropdownOpen(false)}
               />
             </div>
-
-            <Link
-              to={ROUTES.PRODUCTS} onClick={(e) => handleLinkClick(ROUTES.PRODUCTS, e)}
-              className={`text-sm font-semibold tracking-wide transition-colors duration-250 ${isLinkActive(ROUTES.PRODUCTS) ? 'text-gold-400' : 'text-white hover:text-gold-400'
-                }`}
-            >
-              Products
-            </Link>
 
             <Link
               to={ROUTES.CALCULATORS} onClick={(e) => handleLinkClick(ROUTES.CALCULATORS, e)}
@@ -235,14 +231,6 @@ function Navbar() {
               </div>
             )}
           </div>
-
-          <Link
-            to={ROUTES.PRODUCTS} onClick={(e) => handleLinkClick(ROUTES.PRODUCTS, e)}
-            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.PRODUCTS) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-white hover:text-gold-400'
-              }`}
-          >
-            Products
-          </Link>
 
           <Link
             to={ROUTES.CALCULATORS} onClick={(e) => handleLinkClick(ROUTES.CALCULATORS, e)}

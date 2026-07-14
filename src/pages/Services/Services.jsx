@@ -72,11 +72,18 @@ function StatItem({ value, label, suffix = '' }) {
   );
 }
 
-const illustrations = [
-  '/images/illustrations/finance_growth.png',
-  '/images/illustrations/retirement_planning.png',
-  '/images/illustrations/tax_insurance.png'
-];
+const serviceIllustrations = {
+  'mutual-fund-sip': '/images/illustrations/finance_growth.png',
+  'tax-planning': '/images/illustrations/tax_insurance.png',
+  'retirement-planning': '/images/illustrations/retirement_planning.png',
+  'insurance-solutions': '/images/illustrations/insurance_solutions.png',
+  'wealth-management': '/images/illustrations/wealth_management.png',
+  'business-finance': '/images/illustrations/business_finance.png',
+  'financial-planning': '/images/illustrations/financial_planning.png',
+  'nri-investment': '/images/illustrations/nri_investment.png',
+  'portfolio-review': '/images/illustrations/portfolio_review.png',
+  'estate-planning': '/images/illustrations/estate_planning.png'
+};
 
 function Services() {
   const { hash } = useLocation();
@@ -120,8 +127,8 @@ function Services() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-12 md:gap-24 pt-8 md:pt-12 border-t border-gold-400/20 w-full max-w-2xl mx-auto">
              <StatItem value="99" label="Client Retention Ratio" suffix="%" />
-             <StatItem value="800" label="Satisfied Clients" suffix="+" />
-             <StatItem value="15" label="Years of Excellence" suffix="+" />
+             <StatItem value="500" label="Satisfied Clients" suffix="+" />
+             <StatItem value="6" label="Years of Excellence" suffix="+" />
           </div>
         </div>
 
@@ -145,8 +152,8 @@ function Services() {
           {SERVICES.map((service, idx) => {
             // Alternate layout: Image left vs Image right
             const isEven = idx % 2 === 0;
-            // Cycle through generated illustrations
-            const imgSource = illustrations[idx % illustrations.length];
+            // Use unique illustrations for each service
+            const imgSource = serviceIllustrations[service.id] || '/images/illustrations/finance_growth.png';
 
             return (
               <div key={service.id} id={service.id} className="bg-white border border-gray-100 shadow-sm rounded-3xl p-8 md:p-12 lg:p-16 scroll-mt-28 hover:shadow-md transition-all duration-300">
