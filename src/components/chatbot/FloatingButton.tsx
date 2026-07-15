@@ -57,7 +57,7 @@ export default function FloatingButton({ isOpen, toggle }: FloatingButtonProps) 
               {/* Golden line chart drawing itself inside the bubble */}
               <motion.path 
                 d="M7 13l3-3 4 4 4-4" 
-                stroke="#423E3B" 
+                stroke="currentColor" 
                 strokeWidth="2.5" 
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
