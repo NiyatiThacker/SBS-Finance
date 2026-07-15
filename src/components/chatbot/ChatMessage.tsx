@@ -22,7 +22,7 @@ export default function ChatMessage({ role, content, timestamp }: ChatMessagePro
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-5 group`}
     >
       {!isUser && (
-        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 mr-3 mt-1 shadow-sm border border-slate-200">
+        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shrink-0 mr-3 mt-1 shadow-sm border border-green-100">
            <Bot size={18} className="text-white" />
         </div>
       )}
@@ -31,21 +31,21 @@ export default function ChatMessage({ role, content, timestamp }: ChatMessagePro
         <div
           className={`px-5 py-3.5 rounded-3xl text-[15px] leading-relaxed shadow-sm ${
             isUser
-               ? 'bg-blue-600 text-white rounded-tr-sm'
+               ? 'bg-gold-400 text-green-950 rounded-tr-sm font-medium'
                : 'bg-white border border-slate-200/60 text-slate-700 rounded-tl-sm'
           }`}
         >
-          <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert !text-white' : 'text-slate-700'}`}>
+          <div className={`prose prose-sm max-w-none ${isUser ? 'text-green-950 font-medium' : 'text-slate-700'}`}>
             <ReactMarkdown 
               components={{
-                p: ({node, ...props}) => <p className={`mb-3 last:mb-0 ${isUser ? '!text-white' : ''}`} {...props} />,
+                p: ({node, ...props}) => <p className={`mb-3 last:mb-0 ${isUser ? '!text-green-950' : ''}`} {...props} />,
                 a: ({node, href, ...props}) => {
                   const isInternal = href && href.startsWith('/')
                   if (isInternal) {
                     return (
                       <Link 
                         to={href} 
-                        className={`${isUser ? 'text-blue-100' : 'text-blue-600'} hover:underline font-medium`} 
+                        className={`${isUser ? 'text-green-900 underline' : 'text-gold-600'} hover:underline font-medium`} 
                         {...props} 
                       />
                     )
@@ -55,15 +55,15 @@ export default function ChatMessage({ role, content, timestamp }: ChatMessagePro
                       href={href} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className={`${isUser ? 'text-blue-100' : 'text-blue-600'} hover:underline font-medium`} 
+                      className={`${isUser ? 'text-green-900 underline' : 'text-gold-600'} hover:underline font-medium`} 
                       {...props} 
                     />
                   )
                 },
-                strong: ({node, ...props}) => <strong className={`font-semibold ${isUser ? '!text-white' : 'text-slate-900'}`} {...props} />,
+                strong: ({node, ...props}) => <strong className={`font-bold ${isUser ? '!text-green-950' : 'text-slate-900'}`} {...props} />,
                 code: ({node, inline, ...props}: any) => (
                   inline 
-                    ? <code className={`${isUser ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-800'} rounded px-1.5 py-0.5 text-xs font-mono`} {...props} />
+                    ? <code className={`${isUser ? 'bg-green-700/10 text-green-950' : 'bg-slate-100 text-slate-800'} rounded px-1.5 py-0.5 text-xs font-mono`} {...props} />
                     : <code className="block bg-slate-800 text-slate-50 p-3 rounded-xl my-3 text-xs overflow-x-auto font-mono" {...props} />
                 )
               }}
@@ -76,7 +76,7 @@ export default function ChatMessage({ role, content, timestamp }: ChatMessagePro
         {/* Action Pills Mockup */}
         {showMockActions && (
           <div className="flex gap-2 mt-3 w-full">
-            <button className="flex-1 py-2 px-3 rounded-xl bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold hover:bg-blue-100 transition-colors shadow-sm">
+            <button className="flex-1 py-2 px-3 rounded-xl bg-green-50 border border-green-100 text-green-950 text-xs font-semibold hover:bg-green-100 transition-colors shadow-sm">
               Yes, show me
             </button>
             <button className="flex-1 py-2 px-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-100 transition-colors shadow-sm">
@@ -89,7 +89,7 @@ export default function ChatMessage({ role, content, timestamp }: ChatMessagePro
         {timestamp && (
           <div className={`flex items-center gap-1.5 mt-1.5 text-[10px] font-medium text-slate-400 ${isUser ? 'mr-1' : 'ml-1'}`}>
             <span>{timestamp}</span>
-            {isUser && <CheckCheck size={14} className="text-blue-500" />}
+            {isUser && <CheckCheck size={14} className="text-gold-400" />}
           </div>
         )}
       </div>

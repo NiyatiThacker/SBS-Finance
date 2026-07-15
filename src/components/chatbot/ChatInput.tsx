@@ -32,13 +32,13 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
-          className="w-full bg-slate-50 border border-slate-200/80 hover:border-slate-300 rounded-full pl-5 pr-12 py-3.5 text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all disabled:opacity-50 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]"
+          className="w-full bg-slate-50 border border-slate-200/80 hover:border-slate-300 rounded-full pl-5 pr-12 py-3.5 text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-400/20 focus:border-gold-400 transition-all disabled:opacity-50 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]"
           disabled={isLoading}
         />
         <button
           type="submit"
           disabled={!input.trim() || isLoading}
-          className="absolute right-1.5 bg-blue-600 text-white rounded-full w-[34px] h-[34px] flex items-center justify-center hover:bg-blue-700 hover:shadow-md disabled:opacity-50 disabled:hover:bg-blue-600 disabled:hover:shadow-none transition-all"
+          className="absolute right-1.5 bg-gold-400 text-green-950 rounded-full w-[34px] h-[34px] flex items-center justify-center hover:bg-green-700 hover:text-white hover:shadow-md disabled:opacity-50 disabled:hover:bg-gold-400 disabled:hover:shadow-none transition-all duration-250 cursor-pointer"
         >
           {isLoading ? (
             <Loader2 size={18} className="animate-spin text-white" />
