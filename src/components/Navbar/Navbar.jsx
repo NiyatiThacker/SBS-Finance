@@ -177,7 +177,7 @@ function Navbar() {
           <img src={sbsLogo} alt="SBS Financials Logo" className="w-24 h-auto object-contain" />
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="text-slate-50 hover:text-gold-400 focus:outline-none cursor-pointer p-1 rounded-md"
+            className="text-green-950 hover:text-gold-400 focus:outline-none cursor-pointer p-1 rounded-md"
           >
             <X size={20} />
           </button>
@@ -186,7 +186,7 @@ function Navbar() {
         <div className="flex flex-col gap-5 overflow-y-auto max-h-[calc(100vh-140px)]">
           <Link
             to={ROUTES.HOME} onClick={(e) => handleLinkClick(ROUTES.HOME, e)}
-            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.HOME) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-slate-50 hover:text-gold-400'
+            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.HOME) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-green-950 hover:text-gold-400'
               }`}
           >
             Home
@@ -194,7 +194,7 @@ function Navbar() {
 
           <Link
             to={ROUTES.ABOUT} onClick={(e) => handleLinkClick(ROUTES.ABOUT, e)}
-            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.ABOUT) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-slate-50 hover:text-gold-400'
+            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.ABOUT) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-green-950 hover:text-gold-400'
               }`}
           >
             About Us
@@ -204,7 +204,7 @@ function Navbar() {
           <div className="flex flex-col">
             <button
               onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-              className={`flex items-center justify-between text-base font-semibold py-1.5 transition-colors duration-250 focus:outline-none cursor-pointer ${location.pathname.startsWith('/services') ? 'text-gold-400' : 'text-slate-50 hover:text-gold-400'
+              className={`flex items-center justify-between text-base font-semibold py-1.5 transition-colors duration-250 focus:outline-none cursor-pointer ${location.pathname.startsWith('/services') ? 'text-gold-400' : 'text-green-950 hover:text-gold-400'
                 }`}
             >
               <span>Services</span>
@@ -218,7 +218,7 @@ function Navbar() {
               <div className="pl-4 mt-2 border-l border-gold-400/20 flex flex-col gap-3">
                 <Link
                   to={ROUTES.SERVICES}
-                  className="text-sm text-slate-300 hover:text-gold-400 py-1 transition-colors duration-250 font-medium"
+                  className="text-sm text-green-900 hover:text-gold-400 py-1 transition-colors duration-250 font-medium"
                 >
                   All Services Overview
                 </Link>
@@ -238,7 +238,7 @@ function Navbar() {
                         }
                       }
                     }}
-                    className="text-sm text-slate-300 hover:text-gold-400 py-1 transition-colors duration-250"
+                    className="text-sm text-green-900 hover:text-gold-400 py-1 transition-colors duration-250"
                   >
                     {service.title}
                   </Link>
@@ -249,7 +249,7 @@ function Navbar() {
 
           <Link
             to={ROUTES.CALCULATORS} onClick={(e) => handleLinkClick(ROUTES.CALCULATORS, e)}
-            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.CALCULATORS) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-slate-50 hover:text-gold-400'
+            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.CALCULATORS) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-green-950 hover:text-gold-400'
               }`}
           >
             Calculators
@@ -257,7 +257,7 @@ function Navbar() {
 
           <Link
             to={ROUTES.CONTACT} onClick={(e) => handleLinkClick(ROUTES.CONTACT, e)}
-            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.CONTACT) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-slate-50 hover:text-gold-400'
+            className={`text-base font-semibold py-1.5 transition-colors duration-250 ${isLinkActive(ROUTES.CONTACT) ? 'text-gold-400 border-l-2 border-gold-400 pl-2' : 'text-green-950 hover:text-gold-400'
               }`}
           >
             Contact Us
