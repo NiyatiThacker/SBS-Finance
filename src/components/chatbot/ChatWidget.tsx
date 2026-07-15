@@ -95,14 +95,18 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
       transition={{ type: "spring", stiffness: 360, damping: 26 }}
       style={{
         transformOrigin: "bottom right",
-        width: isMobile ? 'calc(100vw - 2rem)' : size.width,
-        height: isMobile ? 'min(550px, calc(100vh - 8rem))' : size.height,
-        maxHeight: 'calc(100vh - 8rem)'
+        width: isMobile ? '100vw' : size.width,
+        height: isMobile ? '100dvh' : size.height,
+        maxHeight: isMobile ? '100dvh' : 'calc(100vh - 8rem)'
       }}
-      className="bg-slate-50 shadow-[0_8px_30px_rgb(0,0,0,0.16)] border border-slate-200/60 flex flex-col overflow-hidden font-sans rounded-3xl relative"
+      className={`bg-slate-50 flex flex-col overflow-hidden font-sans relative ${
+        isMobile
+          ? 'fixed inset-0 w-screen h-[100dvh] rounded-none z-[9999]'
+          : 'shadow-[0_8px_30px_rgb(0,0,0,0.16)] border border-slate-200/60 rounded-3xl'
+      }`}
     >
       {/* Header */}
-      <div className="bg-green-700 text-white p-5 pb-6 flex items-start justify-between relative shrink-0 rounded-t-[1.3rem]">
+      <div className={`bg-green-700 text-white p-5 pb-6 flex items-start justify-between relative shrink-0 ${isMobile ? 'rounded-none pt-8' : 'rounded-t-[1.3rem]'}`}>
         {/* Background Graphic */}
         <div className="absolute right-0 bottom-0 opacity-40 pointer-events-none">
           <svg width="180" height="60" viewBox="0 0 180 60" fill="none" xmlns="http://www.w3.org/2000/svg">

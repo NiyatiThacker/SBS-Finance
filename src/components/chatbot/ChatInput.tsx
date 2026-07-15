@@ -18,13 +18,21 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
     }
   }
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640)
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   // Auto-focus input on load
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
 
   return (
-    <div className="bg-white px-5 pt-3 pb-4 shrink-0 rounded-b-[1.3rem] border-t border-slate-100">
+    <div className={`bg-white px-5 pt-3 border-t border-slate-100 shrink-0 ${isMobile ? 'rounded-none pb-7' : 'rounded-b-[1.3rem] pb-4'}`}>
       <form onSubmit={handleSubmit} className="relative flex items-center mb-2.5">
         <input
           ref={inputRef}

@@ -68,12 +68,14 @@ function App() {
           <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
             <AnimatePresence>
               {isChatOpen && (
-                <div className="mb-4">
+                <div className="lg:mb-4">
                   <ChatWidget onClose={() => setIsChatOpen(false)} />
                 </div>
               )}
             </AnimatePresence>
-            <FloatingButton isOpen={isChatOpen} toggle={() => setIsChatOpen(!isChatOpen)} />
+            <div className={isChatOpen ? 'hidden lg:block' : 'block'}>
+              <FloatingButton isOpen={isChatOpen} toggle={() => setIsChatOpen(!isChatOpen)} />
+            </div>
           </div>
 
         </div>
