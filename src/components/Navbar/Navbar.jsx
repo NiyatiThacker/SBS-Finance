@@ -139,12 +139,19 @@ function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Right CTA Button */}
-          <div className={`hidden lg:flex items-center ${location.pathname === ROUTES.CONTACT ? 'invisible pointer-events-none' : ''}`}>
-            <Link to={ROUTES.CONTACT} onClick={(e) => handleLinkClick(ROUTES.CONTACT, e)} className="btn-primary flex items-center gap-2 text-sm px-5 py-2.5">
+          {/* Desktop Right CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link 
+              to={ROUTES.CONTACT} 
+              onClick={(e) => handleLinkClick(ROUTES.CONTACT, e)} 
+              className={`btn-primary flex items-center gap-2 text-sm px-5 py-2.5 ${location.pathname === ROUTES.CONTACT ? 'invisible pointer-events-none' : ''}`}
+            >
               <PhoneCall size={16} />
               <span>Get in Touch</span>
             </Link>
+            <button className="btn-outline flex items-center gap-2 text-sm px-5 py-2.5">
+              <span>Login</span>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -263,15 +270,20 @@ function Navbar() {
             Contact Us
           </Link>
 
-          {location.pathname !== ROUTES.CONTACT && (
-            <Link
-              to={ROUTES.CONTACT} onClick={(e) => handleLinkClick(ROUTES.CONTACT, e)}
-              className="btn-primary flex items-center justify-center gap-2 mt-4 py-3"
-            >
-              <PhoneCall size={18} />
-              <span>Get in Touch</span>
-            </Link>
-          )}
+          <div className="flex flex-col gap-3 mt-4">
+            {location.pathname !== ROUTES.CONTACT && (
+              <Link
+                to={ROUTES.CONTACT} onClick={(e) => handleLinkClick(ROUTES.CONTACT, e)}
+                className="btn-primary flex items-center justify-center gap-2 py-3"
+              >
+                <PhoneCall size={18} />
+                <span>Get in Touch</span>
+              </Link>
+            )}
+            <button className="btn-outline flex items-center justify-center gap-2 py-3">
+              <span>Login</span>
+            </button>
+          </div>
         </div>
       </div>
 
