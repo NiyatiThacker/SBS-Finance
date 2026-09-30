@@ -38,10 +38,10 @@ function StatItem({ value, label, prefix = '', suffix = '' }) {
 
   return (
     <div className="flex flex-col items-center justify-center p-4 text-center">
-      <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gold-400 mb-2 font-sans tracking-tight">
+      <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink-dark mb-2 tracking-tight">
         {prefix}{formattedDisplay}{suffix}
       </div>
-      <div className="text-white/80 text-sm md:text-base font-medium tracking-wide">
+      <div className="text-ink-muted text-sm md:text-base font-bold tracking-wider uppercase">
         {label}
       </div>
     </div>
@@ -90,26 +90,76 @@ function Home() {
   // Extract 4 main services for the preview section
   const previewServices = SERVICES.slice(0, 4);
 
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768 || window.matchMedia('(hover: none)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isTouch = window.matchMedia('(hover: none)').matches;
+      const isSmallScreen = window.innerWidth < 768;
+      setIsMobile(isTouch || isSmallScreen);
+    };
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Framer Motion Variants for hover cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, delay: custom * 0.1 }
+    })
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: isMobile ? 0 : 1,
+      transition: { duration: 0.4, ease: "easeOut" }
+    },
+    hover: {
+      opacity: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const contentVariants = {
+    hidden: { y: "100%" },
+    visible: {
+      y: isMobile ? 0 : "100%",
+      transition: { duration: 0.4, ease: "easeOut" }
+    },
+    hover: {
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { scale: 1 },
+    visible: { scale: 1 },
+    hover: { scale: 1.08, transition: { duration: 0.4 } }
+  };
+
   return (
     <div className="bg-white">
       {/* 1. Hero Section */}
-      <section className="relative bg-green-950 text-ink-dark pt-32 pb-24 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-green-700/10">
+      <section className="relative bg-white text-ink-dark pt-32 pb-24 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-gray-100">
         {/* Abstract Gold Background Decor */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gold-400 blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-gold-400 blur-3xl transform -translate-x-1/3 translate-y-1/3"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10 text-center">
-          {/* Gold Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-700/10 border border-green-700/25 mb-6 animate-pulse">
-            <span className="text-green-700 text-xs md:text-sm font-semibold tracking-wider uppercase">
-              Trusted Wealth Advisors
-            </span>
-          </div>
-
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-ink-dark tracking-tight leading-tight max-w-4xl mx-auto mb-6">
-            Ready to Build a Stronger <span className="text-green-700 font-extrabold relative after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-1 after:bg-green-700/40">Financial</span> Future?
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-green-700 tracking-tight leading-[1.1] max-w-4xl mx-auto mb-6">
+            Ready to Build a Stronger <span className="text-gold-400 italic font-medium">Financial</span> Future?
           </h1>
 
           <p className="text-ink-muted text-base md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
@@ -128,14 +178,14 @@ function Home() {
           </div>
         </div>
 
-        {/* Decorative Gold Bottom Wave Accent */}
+        {/* Decorative Gold Bottom Wave Accent (Restored) */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-40"></div>
       </section>
 
-      {/* 2. Stats Bar */}
-      <section className="bg-green-700 border-y border-gold-400/15 py-8 md:py-12">
+      {/* 2. Stats Bar (Clean White Layout) */}
+      <section className="bg-white border-b border-gold-400/15 py-10 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 divide-x divide-gold-400/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 divide-x divide-gold-400/20">
             <StatItem value="6" label="Years of Experience" suffix="+" />
             <StatItem value="500" label="Clients Served" suffix="+" />
             <StatItem value="50" label="Assets Under Advisory" prefix="₹ " suffix="cr+" />
@@ -158,23 +208,80 @@ function Home() {
             {previewServices.map((service, idx) => {
               const IconComponent = Icons[service.icon];
               return (
-                <motion.div 
-                  key={service.id} 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="card flex flex-col items-start border-l-4 border-green-700 hover:border-gold-400"
+                <motion.div
+                  key={service.id}
+                  initial="hidden"
+                  whileInView="visible"
+                  whileHover={!isMobile ? "hover" : undefined}
+                  viewport={{ once: false, margin: isMobile ? "-25% 0px" : "-50px" }}
+                  custom={idx}
+                  variants={cardVariants}
+                  className="product-hover-card w-full group"
                 >
-                  <div className="p-3 bg-green-100 text-green-700 rounded-lg mb-5 transition-colors duration-350">
-                    {IconComponent ? <IconComponent size={24} /> : <Icons.HelpCircle size={24} />}
+                  <div className="product-card-image-wrap">
+                    
+                    {/* Background Image */}
+                    <motion.img
+                      src={`/images/approach_step${(idx % 4) + 1}.png`}
+                      alt={service.title}
+                      className="product-card-bg-img"
+                      variants={imageVariants}
+                    />
+
+                    {/* Top Right Tag */}
+                    <span className="absolute top-4 right-4 z-20 bg-gold-400 text-green-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                      {service.title.split(' ')[0]}
+                    </span>
+
+                    {/* Dark Gradient Overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-90 z-10"></div>
+
+                    {/* Title Overlay (Visible before hover) */}
+                    <motion.div
+                      className="product-card-title-overlay absolute bottom-0 left-0 right-0 p-6 z-[15] text-white"
+                      variants={titleVariants}
+                    >
+                      <h3 className="text-lg md:text-xl font-bold tracking-tight text-white mb-1 drop-shadow-md">
+                        {service.title}
+                      </h3>
+                      {service.focusPoints && service.focusPoints[0] && (
+                        <p className="text-gold-400 text-xs font-semibold drop-shadow-md">
+                          {service.focusPoints[0]}
+                        </p>
+                      )}
+                    </motion.div>
+
+                    {/* Hover Content Sliding Up */}
+                    <motion.div
+                      className="product-card-content flex flex-col justify-between h-[75%]"
+                      variants={contentVariants}
+                    >
+                      <div>
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="p-2 bg-white/20 text-white backdrop-blur-md rounded-lg shadow-sm border border-white/10">
+                            {IconComponent ? <IconComponent size={20} /> : <Icons.HelpCircle size={20} />}
+                          </div>
+                          <h3 className="text-base md:text-lg font-bold text-white drop-shadow-md">
+                            {service.title}
+                          </h3>
+                        </div>
+                        <p className="text-white/90 text-xs md:text-sm leading-relaxed mb-4 line-clamp-3 drop-shadow-sm">
+                          {service.description}
+                        </p>
+                        {service.focusPoints && service.focusPoints[1] && (
+                          <div className="w-full bg-black/30 backdrop-blur-sm rounded-lg px-4 py-2 mb-4 text-white/90 text-xs font-medium border-l-2 border-gold-400 border-t border-r border-b border-white/5">
+                            {service.focusPoints[1]}
+                          </div>
+                        )}
+                      </div>
+
+                      <Link to={service.href} className="text-gold-400 hover:text-white font-semibold text-sm flex items-center gap-1 group/link transition-colors duration-250 mt-auto pb-2 drop-shadow-sm">
+                        <span>Learn More</span>
+                        <Icons.ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform duration-200" />
+                      </Link>
+                    </motion.div>
+                    
                   </div>
-                  <h3 className="text-xl font-bold text-green-950 mb-3">{service.title}</h3>
-                  <p className="text-ink-muted text-sm leading-relaxed mb-6 flex-grow">{service.description}</p>
-                  <Link to={service.href} className="text-green-700 hover:text-gold-600 font-semibold text-sm flex items-center gap-1 group transition-colors duration-250 mt-auto">
-                    <span>Learn More</span>
-                    <Icons.ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
-                  </Link>
                 </motion.div>
               );
             })}
@@ -182,76 +289,69 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. Why Choose Us */}
-      <section className="section-pad bg-green-100/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="section-title section-title-accent inline-block">Why Choose SBS Financials</h2>
-            <p className="text-ink-muted text-body-lg mt-4">
+      {/* 4. Why Choose Us - Big Typography & Minimalist */}
+      <section className="pt-24 md:pt-32 pb-12 md:pb-16 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-700 tracking-tight max-w-2xl">
+              A higher standard of <span className="text-gold-400 italic">wealth management.</span>
+            </h2>
+            <p className="text-ink-muted text-lg max-w-md lg:text-right">
               We stand apart through our client-first fiduciary commitment, customized portfolios, and proactive market advisory.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Value 1: Trust */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-8 rounded-card border border-green-700/5 shadow-sm text-center flex flex-col items-center hover:-translate-y-1 hover:shadow-md transition-all duration-300"
-            >
-              <div className="h-14 w-14 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-600 flex items-center justify-center mb-6">
-                <Icons.ShieldCheck size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-green-950 mb-3">Certified Advisory</h3>
-              <p className="text-ink-muted text-sm leading-relaxed">
-                Our wealth advisors adhere to professional fiduciary standards, putting your investment safety and financial success above all else.
-              </p>
-            </motion.div>
-
-            {/* Value 2: Custom Strategy */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-8 rounded-card border border-green-700/5 shadow-sm text-center flex flex-col items-center hover:-translate-y-1 hover:shadow-md transition-all duration-300"
-            >
-              <div className="h-14 w-14 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-600 flex items-center justify-center mb-6">
-                <Icons.TrendingUp size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-green-950 mb-3">Tailored Strategies</h3>
-              <p className="text-ink-muted text-sm leading-relaxed">
-                We reject standard pre-packaged investment portfolios. Every plan we formulate is uniquely aligned with your specific life milestones.
-              </p>
-            </motion.div>
-
-            {/* Value 3: Experience */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-8 rounded-card border border-green-700/5 shadow-sm text-center flex flex-col items-center hover:-translate-y-1 hover:shadow-md transition-all duration-300"
-            >
-              <div className="h-14 w-14 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-600 flex items-center justify-center mb-6">
-                <Icons.History size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-green-950 mb-3">Proven Track Record</h3>
-              <p className="text-ink-muted text-sm leading-relaxed">
-                Over 6 years, we have successfully managed wealth through multiple bull and bear markets, providing steady, compound growth.
-              </p>
-            </motion.div>
+          <div className="border-t border-gold-400/30">
+            {[
+              { 
+                num: '01',
+                title: 'Certified Fiduciary Advisory', 
+                desc: 'We adhere strictly to professional fiduciary standards. Your investment safety and financial success dictate every single decision we make.'
+              },
+              { 
+                num: '02',
+                title: 'Bespoke Tailored Strategies', 
+                desc: 'We reject standard pre-packaged portfolios. Every blueprint we formulate is uniquely aligned with your specific life milestones and risk appetite.'
+              },
+              { 
+                num: '03',
+                title: 'Proven Track Record', 
+                desc: 'Through multiple bull and bear markets, our proactive management has consistently protected capital while providing steady, compound growth.'
+              }
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                className="group border-b border-gold-400/30 py-10 md:py-16 flex flex-col md:flex-row md:items-start gap-6 md:gap-16 hover:bg-green-50/50 transition-colors duration-500 px-4 -mx-4 md:px-8 md:-mx-8 rounded-xl"
+              >
+                {/* Big Number */}
+                <div className="text-6xl md:text-8xl font-light text-gold-400/40 group-hover:text-gold-400 transition-colors duration-500 leading-none md:w-32 shrink-0">
+                  {item.num}
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 md:pt-4">
+                  <h3 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">{item.title}</h3>
+                  <p className="text-ink-muted text-lg leading-relaxed max-w-3xl">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
         </div>
       </section>
 
 
 
       {/* 7. Testimonials */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
+      <section className="py-12 md:py-16 bg-slate-50 relative overflow-hidden border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
           <h2 className="section-title section-title-accent inline-block">What Our Clients Say</h2>
           <p className="text-gray-500 text-lg mt-4 max-w-2xl mx-auto">
             Real testimonials from satisfied individuals who have reached financial freedom with our advice.

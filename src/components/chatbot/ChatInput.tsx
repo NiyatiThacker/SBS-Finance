@@ -48,7 +48,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
         <button
           type="submit"
           disabled={!input.trim() || isLoading}
-          className="absolute right-1.5 bg-gold-400 text-green-950 rounded-full w-[34px] h-[34px] flex items-center justify-center hover:bg-green-700 hover:text-white hover:shadow-md disabled:opacity-50 disabled:hover:bg-gold-400 disabled:hover:shadow-none transition-all duration-250 cursor-pointer"
+          className="absolute right-1.5 bg-gold-400 text-green-950 rounded-full w-[34px] h-[34px] flex items-center justify-center hover:bg-green-700 hover:shadow-md disabled:opacity-50 disabled:hover:bg-gold-400 disabled:hover:shadow-none transition-all duration-250 cursor-pointer chatbot-hover-icon"
         >
           {isLoading ? (
             <Loader2 size={18} className="animate-spin text-white" />

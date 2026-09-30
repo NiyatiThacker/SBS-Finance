@@ -54,7 +54,7 @@ export default defineConfig({
   plugins: [react(), vercelApiPlugin()],
   server: {
     proxy: {
-      '/api/chat': 'http://127.0.0.1:8001',
+      '/api/chat': 'http://127.0.0.1:8000',
     }
   },
   test: {

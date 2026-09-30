@@ -140,10 +140,10 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
         </div>
 
         <div className="flex gap-2 text-slate-400 z-10 pt-1">
-          <button onClick={clearChat} className="p-1.5 hover:bg-slate-800 rounded-lg hover:text-white transition-colors" title="Restart">
+          <button onClick={clearChat} className="p-1.5 hover:bg-slate-800 rounded-lg transition-colors chatbot-hover-icon" title="Restart">
             <RefreshCw size={18} />
           </button>
-          <button onClick={onClose} className="p-1.5 hover:bg-slate-800 rounded-lg hover:text-white transition-colors" title="Close">
+          <button onClick={onClose} className="p-1.5 hover:bg-slate-800 rounded-lg transition-colors chatbot-hover-icon" title="Close">
             <X size={20} />
           </button>
         </div>
@@ -171,9 +171,9 @@ export default function ChatWidget({ onClose }: ChatWidgetProps) {
                     key={i}
                     onClick={() => sendMessage(action.label)}
                     disabled={isLoading}
-                    className="flex items-center gap-2.5 bg-white border border-slate-200 hover:border-gold-400 hover:bg-green-50 hover:shadow-sm transition-all rounded-xl p-2.5 text-left group disabled:opacity-50"
+                    className="flex items-center gap-2.5 bg-white border border-slate-200 hover:border-gold-400 hover:bg-green-50 hover:shadow-sm transition-all rounded-xl p-2.5 text-left group quick-action-btn disabled:opacity-50"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-green-50 text-gold-600 flex items-center justify-center shrink-0 group-hover:bg-gold-400 group-hover:text-white transition-colors">
+                    <div className="w-7 h-7 rounded-lg bg-green-50 text-gold-600 flex items-center justify-center shrink-0 group-hover:bg-gold-400 quick-action-icon-box transition-colors">
                       <action.icon size={14} className="stroke-[2.5]" />
                     </div>
                     <span className="text-[11px] font-semibold text-slate-600 leading-tight group-hover:text-slate-800 transition-colors">

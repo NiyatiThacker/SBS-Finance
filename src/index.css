@@ -4,7 +4,7 @@
 /* ── CSS Custom Properties ────────────────────────────── */
 :root {
   --color-green-950: #D3C9BD;
-  --color-green-700: #423E3B;
+  --color-green-700: #453327;
   --color-green-100: #F6F4F2;
   --color-gold-400:  #B4986B;
   --color-gold-600:  #AB9E8E;
@@ -23,9 +23,9 @@ html {
 }
 
 body {
-  font-family: "SF Pro Display", "SF Pro Text", -apple-system,
+  font-family: "Plus Jakarta Sans", -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #423E3B;
+  color: #453327;
   background-color: #F6F4F2;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
@@ -66,7 +66,7 @@ body {
   /* Section heading style */
   .section-title {
     @apply text-h2 font-bold mb-3;
-    color: #423E3B !important;
+    color: #453327 !important;
   }
 
   /* Gold underline accent under headings */
@@ -107,23 +107,24 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
+  appearance: textfield; /* Standard */
 }
 
 /* ── Text Contrast and Global Theme Overrides ── */
 .text-green-950 {
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 .text-green-900 {
-  color: #5A524A !important;
+  color: #6B5344 !important;
 }
 .text-green-800 {
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 .text-green-700 {
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 .text-green-600 {
-  color: #5A524A !important;
+  color: #6B5344 !important;
 }
 
 .text-gray-300 {
@@ -133,7 +134,7 @@ input[type="number"] {
   color: #6E6964 !important;
 }
 .text-gray-200 {
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 
 .border-green-900 {
@@ -154,10 +155,23 @@ input[type="number"] {
 }
 
 .hover\:text-green-900:hover {
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 .hover\:bg-green-50:hover {
   background-color: #FAF6EB !important;
+}
+
+/* ── Chatbot Hover Icon Fixes ── */
+.quick-action-btn:hover .quick-action-icon-box {
+  background-color: #B4986B !important; /* Forces the gold background to appear */
+}
+.quick-action-btn:hover .quick-action-icon-box,
+.quick-action-btn:hover .quick-action-icon-box svg,
+.chatbot-hover-icon:hover,
+.chatbot-hover-icon:hover svg,
+.chatbot-hover-icon:hover path {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 /* ── Footer Styling Overrides (Dark Charcoal bg) ── */
@@ -186,10 +200,10 @@ footer .flex.items-center.gap-4 a {
 }
 footer .flex.items-center.gap-4 a:hover {
   background-color: #B4986B !important;
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 footer .flex.items-center.gap-4 a:hover svg {
-  color: #423E3B !important;
+  color: #453327 !important;
 }
 
 footer a.sbs-quantum-link {
@@ -199,5 +213,64 @@ footer a.sbs-quantum-link:hover {
   color: #FAF6EB !important;
 }
 
+/* ── Featured Products Hover Cards ──────────────────────── */
+.product-hover-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  height: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background-color: var(--color-green-950);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
+.product-card-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
+.product-card-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.product-card-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(66, 62, 59, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  transform: translateY(100%);
+  z-index: 20;
+}
+
+.product-card-title-overlay {
+  opacity: 1;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .product-card-content {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .product-card-title-overlay {
+    transition: opacity 0.3s ease;
+  }
+
+  .product-hover-card:hover .product-card-bg-img {
+    transform: scale(1.08);
+  }
+
+  .product-hover-card:hover .product-card-content {
+    transform: translateY(0) !important;
+  }
+}

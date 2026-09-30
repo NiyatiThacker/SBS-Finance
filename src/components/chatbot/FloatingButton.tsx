@@ -40,7 +40,7 @@ export default function FloatingButton({ isOpen, toggle }: FloatingButtonProps) 
           }
         } : {}}
         onClick={toggle}
-        className="relative z-10 bg-gold-400 text-green-950 rounded-full p-4 shadow-[0_8px_30px_rgba(180,152,107,0.3)] flex items-center justify-center hover:bg-green-700 hover:text-white transition-all duration-250"
+        className="relative z-10 bg-gold-400 text-green-950 rounded-full p-4 shadow-[0_8px_30px_rgba(180,152,107,0.3)] flex items-center justify-center hover:bg-green-700 transition-all duration-250 chatbot-hover-icon"
         aria-label="Toggle chat"
       >
         <motion.div

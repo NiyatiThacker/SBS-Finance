@@ -10,7 +10,7 @@ export default {
       colors: {
         green: {
           950: "#D3C9BD",    // Warm Grey (navbar, hero, footer backgrounds)
-          700: "#423E3B",    // Dark Charcoal (primary headings, titles)
+          700: "#453327",    // Rich Walnut (primary headings, titles)
           100: "#F6F4F2",    // Off White (card backgrounds, hover states)
         },
         gold: {
@@ -19,17 +19,15 @@ export default {
         },
         // Text
         ink: {
-          dark:  "#423E3B",  // Dark Charcoal (body text)
-          muted: "#6E6964",  // Muted Charcoal (secondary text)
+          dark:  "#453327",  // Rich Walnut (body text)
+          muted: "#6B5344",  // Muted Mocha (secondary text)
         },
       },
 
       // ── Typography ─────────────────────────────────────────
       fontFamily: {
-        // SF Pro → system font stack (no import required on Apple devices)
         sans: [
-          '"SF Pro Display"',
-          '"SF Pro Text"',
+          '"Plus Jakarta Sans"',
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
@@ -62,9 +60,9 @@ export default {
 
       // ── Box Shadows ────────────────────────────────────────
       boxShadow: {
-        "card":       "0 4px 20px rgba(66, 62, 59, 0.06)",
-        "card-hover": "0 10px 40px rgba(66, 62, 59, 0.12)",
-        "navbar":     "0 2px 12px rgba(66, 62, 59, 0.08)",
+        "card":       "0 4px 20px rgba(69, 51, 39, 0.06)",
+        "card-hover": "0 10px 40px rgba(69, 51, 39, 0.12)",
+        "navbar":     "0 2px 12px rgba(69, 51, 39, 0.08)",
       },
 
       // ── Transitions & Animations ───────────────────────────

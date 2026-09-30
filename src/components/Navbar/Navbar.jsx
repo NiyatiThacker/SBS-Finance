@@ -149,7 +149,13 @@ function Navbar() {
               <PhoneCall size={16} />
               <span>Get in Touch</span>
             </Link>
-            <button className="btn-outline flex items-center gap-2 text-sm px-5 py-2.5">
+            <button 
+              className={`flex items-center gap-2 text-sm font-bold px-6 py-2 rounded-lg transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md
+                ${isScrolled 
+                  ? 'bg-[#ffffff] text-[#453327] hover:bg-[#B4986B] hover:text-white border-2 border-white hover:border-[#B4986B]' 
+                  : 'bg-transparent text-[#453327] border-2 border-[#453327] hover:bg-[#453327] hover:text-white'
+                }`}
+            >
               <span>Login</span>
             </button>
           </div>

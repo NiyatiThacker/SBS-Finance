@@ -166,7 +166,7 @@ def generate_chat_response(messages: list) -> str:
                     groq_messages.append({"role": "user", "content": messages[-1].content + lang_directive})
 
                 completion = groq_client.chat.completions.create(
-                    model="llama-3.3-70b-versatile", # Groq's most stable high-speed reasoning model
+                    model="openai/gpt-oss-20b", # Currently supported active model
                     messages=groq_messages
                 )
                 return completion.choices[0].message.content
